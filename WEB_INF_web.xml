@@ -1,0 +1,132 @@
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" version="2.4"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http:/java.sun.com/dtd/web-app_2_3.dtd">
+
+  <servlet>
+    <servlet-name>botservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.BotServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>botservlet</servlet-name>
+    <url-pattern>/botservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>varlogmessagesservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.VarLogMessagesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>varlogmessagesservlet</servlet-name>
+    <url-pattern>/varlogmessagesservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>varlogapache2accessservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.VarLogApache2AccessServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>varlogapache2accessservlet</servlet-name>
+    <url-pattern>/varlogapache2accessservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>varlogapache2errorservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.VarLogApache2ErrorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>varlogapache2errorservlet</servlet-name>
+    <url-pattern>/varlogapache2errorservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>varlogmysqlmysqlservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.VarLogMysqlMysqlServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>varlogmysqlmysqlservlet</servlet-name>
+    <url-pattern>/varlogmysqlmysqlservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>pdfservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.PdfServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pdfservlet</servlet-name>
+    <url-pattern>/pdfservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>commonservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.CommonServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>commonservlet</servlet-name>
+    <url-pattern>/commonservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>spdetailservlettwo</servlet-name>
+    <servlet-class>edu.wisc.botany.web.SpdetailServletTwo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>spdetailservlettwo</servlet-name>
+    <url-pattern>/spdetailservlettwo</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>searchresultsservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.SearchResultsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchresultsservlet</servlet-name>
+    <url-pattern>/searchresultsservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>familyservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.FamilyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>familyservlet</servlet-name>
+    <url-pattern>/familyservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>genusservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.GenusServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>genusservlet</servlet-name>
+    <url-pattern>/genusservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>detailservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.DetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>detailservlet</servlet-name>
+    <url-pattern>/detailservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>searchspecimenservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.SearchSpecimenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchspecimenservlet</servlet-name>
+    <url-pattern>/searchspecimenservlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>specimenservlet</servlet-name>
+    <servlet-class>edu.wisc.botany.web.SpecimenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>specimenservlet</servlet-name>
+    <url-pattern>/specimenservlet</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+

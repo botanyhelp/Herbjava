@@ -1,0 +1,330 @@
+root@www:/var/lib/mysql# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 46
+Server version: 5.0.51a-3ubuntu5.4 (Ubuntu)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> create database herbfifty;
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  GRANT ALL ON herbfifty.* TO 'www-data'@'localhost' IDENTIFIED BY 'NOTREALPASS'    -> ;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> 
+mysql> use herbfifty
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> CREATE TABLE t_vascular_common_names ( `taxcd` varchar(255) DEFAULT NULL, `common` varchar(255) DEFAULT NULL, `WiscFound` varchar(255) DEFAULT NULL, `t_vascular_common_names_id` int(10) unsigned NOT NULL auto_increment, PRIMARY KEY (`t_vascular_common_names_id`) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+
+
+
+
+
+root@www:/var/lib/mysql/herbdata# cd /var/lib/mysql/herbdata
+
+
+root@www:/var/lib/mysql/herbdata# ls
+ANNHIST_herbfifty.txt          inputspecimen_herbfortyeight.txt
+ANNLKUP_herbfifty.txt          inspecimen_herbfifty.txt
+CITYLKUP_herbfifty.txt         intaxcd_herbfifty.txt
+colleventlkup_herbfifty.txt    link_herbfifty.txt
+Collkup_herbfifty.txt          mover.sh
+Countrylkup_herbfifty.txt      placelup_herbfifty.txt
+countylink_herbfifty.txt       PRECLKUP_herbfifty.txt
+habitat_herbfifty.txt          prec_xref_herbfifty.txt
+Hablink_herbfifty.txt          sitelkup_herbfifty.txt
+habtlkup_herbfifty.txt         spdetail_herbfifty.txt
+inannotatorname_herbfifty.txt  specimen_herbfifty.txt
+incollectorname_herbfifty.txt  TRSgener_xref_herbfifty.txt
+incollevent_herbfifty.txt      TRSLKUP_herbfifty.txt
+inputspecimen_herbfifty.txt
+root@www:/var/lib/mysql/herbdata# 
+
+
+root@www:/var/lib/mysql/herbdata# 
+
+root@www:/usr/lib/cgi-bin# cd /usr/lib/cgi-bin
+root@www:/usr/lib/cgi-bin# perl DB1cgi-modder.pl herbfortyeight herbfifty
+Old DB name is herbfortyeight...
+new DB name is herbfifty
+/usr/lib/cgi-bin/5-1-2010/detail.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichenSearchResults.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichenFamilyList.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/zmap.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichenCNList.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/searchspecimen.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_maker_incollectorname.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichenspecimen.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/type_index.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/SearchResults.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_maker_incollevent.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/FamilyList.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_inspecimen_maker.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichenGenusList.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichendetail.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/ins_spec139.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/ins_spec136.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/specimen.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/specimenGmap.020209-539pmWORKS.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_maker.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichensearchspecimen.cgi.022109.WORKS.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_maker_intaxcd.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/zdate.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/specimenG.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/lichensearchspecimen.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/headertest.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/headertester.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/CNList.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_inputspecimen_maker.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/detailG.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_server.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_maker_custom.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/GenusList.cgi is now available.
+/usr/lib/cgi-bin/5-1-2010/excel_maker_inannotatorname.cgi is now available.
+root@www:/usr/lib/cgi-bin# 
+
+
+root@www:/usr/lib/cgi-bin# head /var/lib/mysql/herbfifty/20tablecreator12.sql
+use herbfifty;
+CREATE TABLE ANNHIST (
+	ACCESSION varchar(255) DEFAULT NULL ,
+	ANNCD varchar(255) DEFAULT NULL ,
+	ANNDATE varchar(255) DEFAULT NULL ,
+	TAXONCD varchar(255) DEFAULT NULL 
+	, PKID int NOT NULL AUTO_INCREMENT,  PRIMARY KEY(PKID)) 
+;
+
+
+root@www:/usr/lib/cgi-bin# perl DB2tablemaker.pl herbfortyeight herbfifty
+Old DB name is herbfortyeight...
+new DB name is herbfifty
+root@www:/usr/lib/cgi-bin# 
+
+
+t@www:/usr/lib/cgi-bin# perl DB3dataimporter.pl herbfortyeight herbfifty
+Old DB name is herbfortyeight...
+new DB name is herbfifty
+about to copy /var/lib/mysql/herbdata/spdetail_herbfifty.txt into /var/lib/mysql/herbfifty/spdetail_herbfifty
+about to copy /var/lib/mysql/herbdata/specimen_herbfifty.txt into /var/lib/mysql/herbfifty/specimen_herbfifty
+about to copy /var/lib/mysql/herbdata/ANNHIST_herbfifty.txt into /var/lib/mysql/herbfifty/ANNHIST_herbfifty
+about to copy /var/lib/mysql/herbdata/ANNLKUP_herbfifty.txt into /var/lib/mysql/herbfifty/ANNLKUP_herbfifty
+about to copy /var/lib/mysql/herbdata/CITYLKUP_herbfifty.txt into /var/lib/mysql/herbfifty/CITYLKUP_herbfifty
+about to copy /var/lib/mysql/herbdata/colleventlkup_herbfifty.txt into /var/lib/mysql/herbfifty/colleventlkup_herbfifty
+about to copy /var/lib/mysql/herbdata/Collkup_herbfifty.txt into /var/lib/mysql/herbfifty/Collkup_herbfifty
+about to copy /var/lib/mysql/herbdata/Countrylkup_herbfifty.txt into /var/lib/mysql/herbfifty/Countrylkup_herbfifty
+about to copy /var/lib/mysql/herbdata/countylink_herbfifty.txt into /var/lib/mysql/herbfifty/countylink_herbfifty
+about to copy /var/lib/mysql/herbdata/habitat_herbfifty.txt into /var/lib/mysql/herbfifty/habitat_herbfifty
+about to copy /var/lib/mysql/herbdata/Hablink_herbfifty.txt into /var/lib/mysql/herbfifty/Hablink_herbfifty
+about to copy /var/lib/mysql/herbdata/habtlkup_herbfifty.txt into /var/lib/mysql/herbfifty/habtlkup_herbfifty
+about to copy /var/lib/mysql/herbdata/inputspecimen_herbfifty.txt into /var/lib/mysql/herbfifty/inputspecimen_herbfifty
+about to copy /var/lib/mysql/herbdata/link_herbfifty.txt into /var/lib/mysql/herbfifty/link_herbfifty
+about to copy /var/lib/mysql/herbdata/placelup_herbfifty.txt into /var/lib/mysql/herbfifty/placelup_herbfifty
+about to copy /var/lib/mysql/herbdata/PRECLKUP_herbfifty.txt into /var/lib/mysql/herbfifty/PRECLKUP_herbfifty
+about to copy /var/lib/mysql/herbdata/prec_xref_herbfifty.txt into /var/lib/mysql/herbfifty/prec_xref_herbfifty
+about to copy /var/lib/mysql/herbdata/sitelkup_herbfifty.txt into /var/lib/mysql/herbfifty/sitelkup_herbfifty
+about to copy /var/lib/mysql/herbdata/TRSgener_xref_herbfifty.txt into /var/lib/mysql/herbfifty/TRSgener_xref_herbfifty
+about to copy /var/lib/mysql/herbdata/TRSLKUP_herbfifty.txt into /var/lib/mysql/herbfifty/TRSLKUP_herbfifty
+about to copy /var/lib/mysql/herbdata/incollevent_herbfifty.txt  into /var/lib/mysql/herbfifty/incollevent_herbfifty 
+about to copy /var/lib/mysql/herbdata/incollectorname_herbfifty.txt  into /var/lib/mysql/herbfifty/incollectorname_herbfifty 
+about to copy /var/lib/mysql/herbdata/inannotatorname_herbfifty.txt  into /var/lib/mysql/herbfifty/inannotatorname_herbfifty 
+about to copy /var/lib/mysql/herbdata/intaxcd_herbfifty.txt  into /var/lib/mysql/herbfifty/intaxcd_herbfifty 
+about to copy /var/lib/mysql/herbdata/inspecimen_herbfifty.txt  into /var/lib/mysql/herbfifty/inspecimen_herbfifty 
+Starting spdetail data uploading ok
+spdetail data seems to have uploaded ok
+Starting specimen data uploading ok
+specimen data seems to have uploaded ok
+Starting ANNHIST data uploading ok
+ANNHIST data seems to have uploaded okay
+Starting ANNLKUP data uploading ok
+ANNLKUP data seems to have uploaded okay
+Starting CITYLKUP data uploading ok
+CITYLKUP data seems to have uploaded okay
+Starting colleventlkup data uploading ok
+colleventlkup data seems to have uploaded okay
+Starting Collkup data uploading ok
+Collkup data seems to have uploaded okay
+Starting Countrylkup data uploading ok
+Countrylkup data seems to have uploaded okay
+Starting countylink data uploading ok
+countylink data seems to have uploaded okay
+Starting habitat data uploading ok
+habitat data seems to have uploaded okay
+Starting Hablink data uploading ok
+Hablink data seems to have uploaded okay
+Starting habtlkup data uploading ok
+habtlkup data seems to have uploaded okay
+Starting inputspecimen data uploading ok
+DBD::mysql::st execute failed: Duplicate entry '1' for key 1 at DB3dataimporter.pl line 200.
+inputspecimen data seems to have uploaded okay
+Starting link data uploading ok
+link data seems to have uploaded okay
+Starting placelup data uploading ok
+placelup data seems to have uploaded okay
+Starting PRECLKUP data uploading ok
+PRECLKUP data seems to have uploaded okay
+Starting prec_xref data uploading ok
+prec_xref data seems to have uploaded okay
+Starting sitelkup data uploading ok
+sitelkup data seems to have uploaded okay
+Starting TRSgener_xref data uploading ok
+TRSgener_xref data seems to have uploaded okay
+Starting TRSLKUP data uploading ok
+TRSLKUP data seems to have uploaded okay
+Starting incollevent data uploading ok
+incollevent data seems to have uploaded okay
+Starting incollectorname data uploading ok
+incollectorname data seems to have uploaded okay
+Starting inannotatorname data uploading ok
+inannotatorname data seems to have uploaded okay
+Starting intaxcd data uploading ok
+intaxcd data seems to have uploaded okay
+Starting inspecimen data uploading ok
+inspecimen data seems to have uploaded okay
+This script finished.
+root@www:/usr/lib/cgi-bin# 
+
+
+root@www:/usr/lib/cgi-bin# cd /var/lib/mysql
+root@www:/var/lib/mysql# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 49
+Server version: 5.0.51a-3ubuntu5.4 (Ubuntu)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> use herbfiftyReading table information for completion of table and column namesYou can turn off this feature to get a quicker startup with -A
+Database changed
+mysql> 
+AD DATA INFILE 't_vascular_common_names_090507' INTO TABLE t_vascular_common_names FIELDS TERMINATED BY "|"   ENCLOSED BY '"'   LINES TERMINATED BY  '\r\n';
+ERROR 29 (HY000): File '/var/lib/mysql/herbfifty/t_vascular_common_names_090507' not found (Errcode: 2)
+mysql> quit
+Bye
+root@www:/var/lib/mysql# cp herbdata/t_vascular_common_names_090507 herbfifty/
+root@www:/var/lib/mysql# mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 50
+Server version: 5.0.51a-3ubuntu5.4 (Ubuntu)
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> use herbfiftyReading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql>  LOAD DATA INFILE 't_vascular_common_names_090507' INTO TABLE t_vascular_common_names FIELDS TERMINATED BY "|"   ENCLOSED BY '"'   LINES TERMINATED BY  '\r\n';
+Query OK, 7226 rows affected, 7226 warnings (0.07 sec)
+Records: 7226  Deleted: 0  Skipped: 0  Warnings: 7226
+
+mysql> ALTER TABLE t_vascular_common_names ADD INDEX (common); ALTER TABLE t_vascular_common_names ADD INDEX (WiscFound);
+Query OK, 7226 rows affected (0.12 sec)
+Records: 7226  Duplicates: 0  Warnings: 0
+
+Query OK, 7226 rows affected (0.13 sec)
+Records: 7226  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE spdetail ADD INDEX (Taxcd);ALTER TABLE spdetail ADD INDEX (Syncd);ALTER TABLE spdetail ADD INDEX (Wisc_found);ALTER TABLE spdetail ADD INDEX (family);ALTER TABLE specimen ADD INDEX (ACCESSION);ALTER TABLE specimen ADD INDEX (Taxcd);
+Query OK, 20765 rows affected (0.83 sec)
+Records: 20765  Duplicates: 0  Warnings: 0
+
+Query OK, 20765 rows affected (1.11 sec)
+Records: 20765  Duplicates: 0  Warnings: 0
+
+Query OK, 20765 rows affected (1.32 sec)
+Records: 20765  Duplicates: 0  Warnings: 0
+
+Query OK, 20765 rows affected (1.54 sec)
+Records: 20765  Duplicates: 0  Warnings: 0
+
+Query OK, 351206 rows affected (16.51 sec)
+Records: 351206  Duplicates: 0  Warnings: 0
+
+Query OK, 351206 rows affected (21.79 sec)
+Records: 351206  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> quit
+Bye
+
+root@www:/usr/lib/cgi-bin#  cd /usr/lib/cgi-bin
+root@www:/usr/lib/cgi-bin# perl DB5golive.pl herbfortyeight herbfifty
+About to open /usr/lib/cgi-bin/5-1-2010
+About to open /usr/lib/cgi-bin/5-1-2010/detail.cgi for reading:
+File detail.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichenSearchResults.cgi for reading:
+File lichenSearchResults.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichenFamilyList.cgi for reading:
+File lichenFamilyList.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/zmap.cgi for reading:
+File zmap.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichenCNList.cgi for reading:
+File lichenCNList.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/searchspecimen.cgi for reading:
+File searchspecimen.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_maker_incollectorname.cgi for reading:
+File excel_maker_incollectorname.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichenspecimen.cgi for reading:
+File lichenspecimen.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/type_index.cgi for reading:
+File type_index.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/SearchResults.cgi for reading:
+File SearchResults.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_maker_incollevent.cgi for reading:
+File excel_maker_incollevent.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/FamilyList.cgi for reading:
+File FamilyList.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_inspecimen_maker.cgi for reading:
+File excel_inspecimen_maker.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichenGenusList.cgi for reading:
+File lichenGenusList.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichendetail.cgi for reading:
+File lichendetail.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/ins_spec139.cgi for reading:
+File ins_spec139.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/ins_spec136.cgi for reading:
+File ins_spec136.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/specimen.cgi for reading:
+File specimen.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/specimenGmap.020209-539pmWORKS.cgi for reading:
+File specimenGmap.020209-539pmWORKS.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_maker.cgi for reading:
+File excel_maker.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichensearchspecimen.cgi.022109.WORKS.cgi for reading:
+File lichensearchspecimen.cgi.022109.WORKS.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_maker_intaxcd.cgi for reading:
+File excel_maker_intaxcd.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/zdate.cgi for reading:
+File zdate.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/specimenG.cgi for reading:
+File specimenG.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/lichensearchspecimen.cgi for reading:
+File lichensearchspecimen.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/headertest.cgi for reading:
+File headertest.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/headertester.cgi for reading:
+File headertester.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/CNList.cgi for reading:
+File CNList.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_inputspecimen_maker.cgi for reading:
+File excel_inputspecimen_maker.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/detailG.cgi for reading:
+File detailG.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_server.cgi for reading:
+File excel_server.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_maker_custom.cgi for reading:
+File excel_maker_custom.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/GenusList.cgi for reading:
+File GenusList.cgi copied okay
+About to open /usr/lib/cgi-bin/5-1-2010/excel_maker_inannotatorname.cgi for reading:
+File excel_maker_inannotatorname.cgi copied okay
+root@www:/usr/lib/cgi-bin# 
+
+
